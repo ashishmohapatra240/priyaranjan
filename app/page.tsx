@@ -1,103 +1,98 @@
-import Image from "next/image";
+'use client';
+
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Header from './components/Header';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  return (
+    <div className={`h-screen transition-colors duration-300 flex flex-col ${isDarkMode
+      ? 'bg-black text-white'
+      : 'bg-white text-gray-900'
+      }`}>
+      <Header isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+
+      <main className="px-6 md:px-12 py-2 md:py-4 flex-1 flex items-center">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="flex flex-col-reverse md:flex-row gap-6 lg:gap-12 items-center justify-center">
+            <div className="space-y-4 max-w-lg">
+              {isDarkMode ? (
+                <div className="space-y-2">
+                  <h1 className="text-base md:text-lg font-light leading-tight">
+                    Hi,
+                    I am Priyaranjan and I am lazy af.
+
+                    I&apos;ve poured my soul into building brands, campaigns, and
+                    designs for others... but when it comes to designing my
+                    own portfolio?
+
+                    But don&apos;t worry, I&apos;ll get there. Probably. Eventually.
+                    Maybe.
+                  </h1>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <h1 className="text-base md:text-lg font-light leading-tight">
+                    Hi, welcome to my portfolio. I&apos;m a hands-on Digital Creative Director
+                    focused on crafting innovative digital experiences. Dive in to explore my
+                    work, my process, and how I bring ideas to life through collaboration and
+                    creativity.
+                  </h1>
+                </div>
+              )}
+
+              <div className="flex items-center space-x-3">
+                <div className={`w-3 h-3 rounded-full ${isDarkMode ? 'bg-white' : 'bg-black'
+                  }`}></div>
+                <button className="text-base md:text-lg font-medium leading-tight hover:underline transition-all duration-200 cursor-pointer">
+                  See My Works
+                </button>
+              </div>
+              <div className="mt-20">
+                <div className="flex space-x-4 text-xs md:text-sm text-gray-500">
+                  <a href="http://instagram.com/priyaranjan.design/" className="hover:text-current transition-colors">
+                    Instagram
+                  </a>
+                  <a href="https://www.linkedin.com/in/bypriyaranjan/" className="hover:text-current transition-colors">
+                    LinkedIn
+                  </a>
+                  <a href="https://wa.me/919124999144" className="hover:text-current transition-colors">
+                    WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative">
+                <Image
+                  src={isDarkMode ? "/images/hero-dark.png" : "/images/hero-light.png"}
+                  alt="Priyaranjan portrait"
+                  height={400}
+                  width={400}
+                  className="max-w-full h-auto object-contain"
+                />
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
