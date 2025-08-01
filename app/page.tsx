@@ -77,21 +77,24 @@ export default function Home() {
                   <AnimatedLink
                     href="http://instagram.com/priyaranjan.design/"
                     className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
-                  >
-                    Instagram
-                  </AnimatedLink>
+                    frontText="GoodPhotos"
+                    backText="Instagram"
+                  />
+
                   <AnimatedLink
                     href="https://www.linkedin.com/in/bypriyaranjan/"
                     className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
-                  >
-                    LinkedIn
-                  </AnimatedLink>
+                    frontText="BuzzwordHQ"
+                    backText="LinkedIn"
+                  />
+
                   <AnimatedLink
                     href="https://wa.me/919124999144"
                     className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
-                  >
-                    WhatsApp
-                  </AnimatedLink>
+                    frontText="Text Maybe"
+                    backText="WhatsApp"
+                  />
+
                 </div>
               </div>
             </div>

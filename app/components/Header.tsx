@@ -82,9 +82,9 @@ export default function Header({ isDarkMode, toggleTheme }: HeaderProps) {
                                 <AnimatedLink
                                     href={`/${item.id}`}
                                     className={`text-sm font-medium transition-colors ${isDarkMode ? 'text-white/60' : 'text-black/60'}`}
-                                >
-                                    {item.label}
-                                </AnimatedLink>
+                                    frontText={item.label}
+                                    backText={item.label}
+                                />
                             </div>
                             <div
                                 className={`w-1 h-1 rounded-full transition-opacity ${selectedItem === item.id
