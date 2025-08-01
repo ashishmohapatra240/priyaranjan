@@ -31,39 +31,40 @@ export default function Header({ isDarkMode, toggleTheme }: HeaderProps) {
         overlay.style.position = 'fixed';
         overlay.style.top = `${rect.top + rect.height / 2}px`;
         overlay.style.left = `${rect.left + rect.width / 2}px`;
-        overlay.style.width = `${rect.width}px`;
-        overlay.style.height = `${rect.height}px`;
+        overlay.style.width = '20px'; // Start smaller for better scaling
+        overlay.style.height = '20px';
         overlay.style.backgroundColor = isDarkMode ? '#ffffff' : '#000000';
         overlay.style.borderRadius = '50%';
         overlay.style.zIndex = '9999';
         overlay.style.pointerEvents = 'none';
-        overlay.style.transform = 'translate(-50%, -50%)';
+        overlay.style.transform = 'translate(-50%, -50%) scale(0)'; // Start from scale 0
+        overlay.style.opacity = '1';
 
         document.body.appendChild(overlay);
 
         // Calculate scale needed to cover entire screen
         const maxDimension = Math.max(window.innerWidth, window.innerHeight);
-        const scale = (maxDimension * 3) / rect.width;
+        const scale = (maxDimension * 2.5) / 20; // Adjust based on our 20px starting size
 
-        // Fluid GSAP animation
+        // Improved GSAP animation with better timing
         gsap.timeline()
             .to(overlay, {
                 scale: scale,
-                duration: 2.4,
-                ease: "power4.inOut"
+                duration: 1.2, // Reduced duration for snappier feel
+                ease: "expo.inOut" // Better easing for smooth acceleration/deceleration
             })
             .call(() => {
-                // Toggle theme in the middle of animation
+                // Toggle theme slightly earlier for better perceived performance
                 toggleTheme();
-            }, [], 1.2)
+            }, [], 0.6) // Earlier timing
             .to(overlay, {
                 opacity: 0,
-                duration: 0.8,
-                ease: "power4.inOut",
+                duration: 0.6, // Faster fade out
+                ease: "power2.out",
                 onComplete: () => {
                     document.body.removeChild(overlay);
                 }
-            }, 1.6);
+            }, 0.8); // Start fade out earlier
     };
 
     return (
