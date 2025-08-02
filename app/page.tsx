@@ -73,7 +73,7 @@ export default function Home() {
                   See My Works
                 </Link>
               </div>
-              <div className="mt-20">
+              <div className="my-10">
                 <div className="flex space-x-4 text-xs md:text-sm">
 
 
