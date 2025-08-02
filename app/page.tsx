@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Header from './components/Header';
 import { AnimatedLink } from './components/AnimatedLink';
+import Link from 'next/link';
 
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -68,32 +69,61 @@ export default function Home() {
               <div className="flex items-center space-x-2 mt-6">
                 <div className={`w-3 h-3 rounded-full ${isDarkMode ? 'bg-white' : 'bg-black'
                   }`}></div>
-                <button className="text-base md:text-md font-medium leading-tight hover:underline transition-all duration-200 cursor-pointer">
+                <Link href="https://drive.google.com/drive/folders/1DoeQXkfGvs7P0LSOHxl8h6E1bodZiwIf?usp=share_link" target="_blank" rel="noopener noreferrer" className="text-base md:text-md font-medium leading-tight hover:underline transition-all duration-200 cursor-pointer">
                   See My Works
-                </button>
+                </Link>
               </div>
               <div className="mt-20">
                 <div className="flex space-x-4 text-xs md:text-sm">
-                  <AnimatedLink
-                    href="http://instagram.com/priyaranjan.design/"
+
+
+                  {isDarkMode ? (
+                    <AnimatedLink
+                      href="https://www.instagram.com/priyaranjan.design/"
+                      className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+                      frontText="GoodPhotos"
+                      backText="Instagram"
+                    />
+                  ) : <AnimatedLink
+                    href="https://www.instagram.com/priyaranjan.design/"
                     className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
-                    frontText="GoodPhotos"
+                    frontText="Instagram"
                     backText="Instagram"
                   />
+                  }
 
-                  <AnimatedLink
+                  {isDarkMode ? (
+                    <AnimatedLink
+                      href="https://www.linkedin.com/in/bypriyaranjan/"
+                      className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+                      frontText="BuzzwordHQ"
+                      backText="LinkedIn"
+                    />
+                  ) : <AnimatedLink
                     href="https://www.linkedin.com/in/bypriyaranjan/"
                     className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
-                    frontText="BuzzwordHQ"
+                    frontText="LinkedIn"
                     backText="LinkedIn"
                   />
+                  }
 
-                  <AnimatedLink
-                    href="https://wa.me/919124999144"
-                    className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
-                    frontText="Text Maybe"
-                    backText="WhatsApp"
-                  />
+                  {
+                    isDarkMode ? (
+                      <AnimatedLink
+                        href="https://wa.me/919124999144"
+                        className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+                        frontText="Text Maybe"
+                        backText="WhatsApp"
+                      />
+                    ) : (
+                      <AnimatedLink
+                        href="https://wa.me/919124999144"
+                        className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+                        frontText="WhatsApp"
+                        backText="WhatsApp"
+                      />
+                    )
+                  }
 
                 </div>
               </div>

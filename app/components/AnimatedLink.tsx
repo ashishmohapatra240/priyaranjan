@@ -17,6 +17,7 @@ export const AnimatedLink: React.FC<AnimatedLinkProps> = ({
     return (
         <Link
             href={href}
+            target="_blank" rel="noopener noreferrer"
             className={`group relative overflow-hidden text-sm inline-block ${className}`}
         >
             <span className="block transition duration-500 ease-out group-hover:-translate-y-[120%] opacity-80">
